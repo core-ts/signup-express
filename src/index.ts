@@ -1,4 +1,4 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 
 export interface User {
   username: string;
@@ -58,9 +58,9 @@ export class SignupController<T extends User> {
     }).catch(err => handleError(err, res, this.log));
   }
   verify(req: Request, res: Response) {
-    let userId = req.params[this.id];
-    let passcode = req.params[this.code];
-    let password: string|undefined = req.params[this.password];
+    let userId = req.params[this.id] as string;
+    let passcode = req.params[this.code] as string;
+    let password: string|undefined = req.params[this.password] as string | undefined;
     if ((!userId || userId.length === 0) || (!passcode || passcode.length === 0)) {
       const user = req.body;
       userId = user[this.id];
